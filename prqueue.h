@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 struct Item {
 	int _pr;
@@ -13,12 +14,13 @@ struct Item {
 	bool operator==(const Item& item) {
 		return (this->_pr == item._pr && this->_data == item._data);
 	}
+	friend std::ostream& operator<<(std::ostream& os, const Item& item);
+	friend std::istream& operator>>(std::istream& is, Item& item);
 };
 
 class PrQueue {
 public:
-	PrQueue();
-	enum{EMPTY_PRQUEUE};
+	enum Error {EMPTY_PRQUEUE};
 	bool is_empty() const;
 	void clear_pr();
 	void add(const Item& item);
