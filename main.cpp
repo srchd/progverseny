@@ -4,7 +4,10 @@
 
 using namespace std;
 
-PrQueue PQ;
+//#define NORMAL_MODE
+#ifdef NORMAL_MODE
+
+//PrQueue PQ;
 
 void load_file(const std::string& filename, PrQueue& PQ);
 void print_result(PrQueue& PQ);
@@ -40,3 +43,19 @@ void print_result(PrQueue& PQ) {
 		cout << PQ.remove_max() << endl;
 	}
 }
+#else
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
+TEST_CASE("remove_max") {
+	PrQueue PQ;
+	CHECK_THROWS(PQ.remove_max());
+	Item item(23, "Csapat1");
+	Item item2(69, "Csapat2");
+	Item item3(420, "Csapat3");
+	PQ.add(item);
+	PQ.add(item2);
+	PQ.add(item3);
+	CHECK(PQ.remove_max()._pr == 420);
+	CHECK_FALSE(PQ.is_empty());
+}
+#endif

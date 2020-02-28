@@ -2,7 +2,7 @@
 #include <iostream>
 
 std::ostream& operator<<(std::ostream& os, const Item& item) {
-	os << "Team: " << item._data << ", points: " << item._pr << endl;
+	os << "Team: " << item._data << ", points: " << item._pr;
 	return os;
 }
 std::istream& operator>>(std::istream& is, Item& item) {
